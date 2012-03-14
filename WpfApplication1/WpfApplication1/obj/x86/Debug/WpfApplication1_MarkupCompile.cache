@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\github_test\WpfApplication1\WpfApplication1\obj\x86\Debug\
+D:\KinectProject\WpfApplication1\WpfApplication1\obj\x86\Debug\
 Microsoft.Samples.Kinect.KinectExplorer
 none
 false
 DEBUG;TRACE
-D:\github_test\WpfApplication1\WpfApplication1\App.xaml
+D:\KinectProject\WpfApplication1\WpfApplication1\App.xaml
 11151548125
 
 9321730603
-18-1471566709
+18-1516902760
 MainWindow.xaml;
 
 False
