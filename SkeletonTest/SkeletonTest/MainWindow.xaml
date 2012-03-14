@@ -1,0 +1,27 @@
+﻿<Window x:Class="SkeletonTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:kv="clr-namespace:SkeletonTest"
+        Title="MainWindow" Height="500" Width="640"
+        Closed="WindowClosed">
+    <Grid>
+        <Canvas>
+            <Image x:Name="kinectColorImage" />
+        </Canvas>
+        
+            <kv:KinectSkeleton x:Name="skeletonCanvas1" ClipToBounds="true">
+            </kv:KinectSkeleton>
+            <kv:KinectSkeleton x:Name="skeletonCanvas2" ClipToBounds="true">
+            </kv:KinectSkeleton>
+            <kv:KinectSkeleton x:Name="skeletonCanvas3" ClipToBounds="true">
+            </kv:KinectSkeleton>
+            <kv:KinectSkeleton x:Name="skeletonCanvas4" ClipToBounds="true">
+            </kv:KinectSkeleton>
+            <kv:KinectSkeleton x:Name="skeletonCanvas5" ClipToBounds="true">
+            </kv:KinectSkeleton>
+            <kv:KinectSkeleton x:Name="skeletonCanvas6" ClipToBounds="true">
+            </kv:KinectSkeleton>
+        
+        
+    </Grid>
+</Window>

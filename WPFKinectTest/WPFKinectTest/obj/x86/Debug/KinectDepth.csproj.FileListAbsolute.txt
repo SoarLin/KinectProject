@@ -1,0 +1,20 @@
+F:\Projects\Kinect\SDK Samples\Jesus\WPFKinectTest\WPFKinectTest\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\Projects\Kinect\SDK Samples\Jesus\WPFKinectTest\WPFKinectTest\obj\x86\Debug\Window1.baml
+F:\Projects\Kinect\SDK Samples\Jesus\WPFKinectTest\WPFKinectTest\obj\x86\Debug\Window1.g.cs
+F:\Projects\Kinect\SDK Samples\Jesus\WPFKinectTest\WPFKinectTest\obj\x86\Debug\App.g.cs
+F:\Projects\Kinect\SDK Samples\Jesus\WPFKinectTest\WPFKinectTest\obj\x86\Debug\WPFKinectTest_MarkupCompile.cache
+F:\Projects\Kinect\SDK Samples\Jesus\WPFKinectTest\WPFKinectTest\obj\x86\Debug\WPFKinectTest.g.resources
+F:\Projects\Kinect\SDK Samples\Jesus\WPFKinectTest\WPFKinectTest\obj\x86\Debug\WPFKinectTest.exe
+F:\Projects\Kinect\SDK Samples\Jesus\WPFKinectTest\WPFKinectTest\bin\Debug\WPFKinectTest.exe
+F:\Projects\Kinect\SDK Samples\Jesus\WPFKinectTest\WPFKinectTest\bin\Debug\WPFKinectTest.pdb
+F:\Projects\Kinect\SDK Samples\Jesus\WPFKinectTest\WPFKinectTest\obj\x86\Debug\WPFKinectTest.pdb
+D:\github_test\WPFKinectTest\WPFKinectTest\obj\x86\Debug\WPFKinectTest.exe
+D:\github_test\WPFKinectTest\WPFKinectTest\obj\x86\Debug\WPFKinectTest.pdb
+D:\github_test\WPFKinectTest\WPFKinectTest\bin\Debug\WPFKinectTest.exe
+D:\github_test\WPFKinectTest\WPFKinectTest\bin\Debug\WPFKinectTest.pdb
+D:\github_test\WPFKinectTest\WPFKinectTest\obj\x86\Debug\KinectDepth.csprojResolveAssemblyReference.cache
+D:\github_test\WPFKinectTest\WPFKinectTest\obj\x86\Debug\Window1.baml
+D:\github_test\WPFKinectTest\WPFKinectTest\obj\x86\Debug\Window1.g.cs
+D:\github_test\WPFKinectTest\WPFKinectTest\obj\x86\Debug\App.g.cs
+D:\github_test\WPFKinectTest\WPFKinectTest\obj\x86\Debug\WPFKinectTest_MarkupCompile.cache
+D:\github_test\WPFKinectTest\WPFKinectTest\obj\x86\Debug\WPFKinectTest.g.resources

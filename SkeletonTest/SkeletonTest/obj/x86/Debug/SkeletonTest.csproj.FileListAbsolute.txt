@@ -1,0 +1,15 @@
+D:\github_test\SkeletonTest\SkeletonTest\obj\x86\Debug\SkeletonTest.csprojResolveAssemblyReference.cache
+D:\github_test\SkeletonTest\SkeletonTest\obj\x86\Debug\MainWindow.g.cs
+D:\github_test\SkeletonTest\SkeletonTest\obj\x86\Debug\App.g.cs
+D:\github_test\SkeletonTest\SkeletonTest\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+D:\github_test\SkeletonTest\SkeletonTest\obj\x86\Debug\SkeletonTest_MarkupCompile.cache
+D:\github_test\SkeletonTest\SkeletonTest\obj\x86\Debug\SkeletonTest_MarkupCompile.lref
+D:\github_test\SkeletonTest\SkeletonTest\obj\x86\Debug\SkeletonTest.exe
+D:\github_test\SkeletonTest\SkeletonTest\obj\x86\Debug\SkeletonTest.pdb
+D:\github_test\SkeletonTest\SkeletonTest\obj\x86\Debug\MainWindow.baml
+D:\github_test\SkeletonTest\SkeletonTest\obj\x86\Debug\SkeletonTest.g.resources
+D:\github_test\SkeletonTest\SkeletonTest\obj\x86\Debug\SkeletonTest.Properties.Resources.resources
+D:\github_test\SkeletonTest\SkeletonTest\obj\x86\Debug\SkeletonTest.csproj.GenerateResource.Cache
+D:\github_test\SkeletonTest\SkeletonTest\bin\Debug\SkeletonTest.exe
+D:\github_test\SkeletonTest\SkeletonTest\bin\Debug\SkeletonTest.pdb
+D:\github_test\SkeletonTest\SkeletonTest\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
