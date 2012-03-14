@@ -57,9 +57,16 @@ namespace WpfApplication1
             kinectSensor.DepthFrameReady += new EventHandler<DepthImageFrameReadyEventArgs>(DepthImageReady);
              
         }
+
+        private void WindowClosed(object sender, EventArgs e)
+        {
+            kinectSensor.Stop();
+        }
         
         private void ColorImageReady(object sender, ColorImageFrameReadyEventArgs e)
         {
+            if (!kinectSensor.IsRunning)
+                return;
             using (ColorImageFrame imageFrame = e.OpenColorImageFrame())
             {
                if (imageFrame != null){
@@ -72,10 +79,9 @@ namespace WpfApplication1
 
                     this.outputImage.WritePixels(new Int32Rect(0, 0, imageFrame.Width, imageFrame.Height),
                                     this.colorData, imageFrame.Width * Bgr32BytesPerPixel, 0);
-                }else{ // imageFrame is null because the request did not arrive in time 
-                }
-            } //  using (ColorImageFrame imageFrame = e.OpenColorImageFrame())
-        }//private void ColorImageReady
+                }else{}
+            }
+        }
 
         private void DepthImageReady(object sender, DepthImageFrameReadyEventArgs e)
         {

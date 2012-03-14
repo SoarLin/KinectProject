@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Icon="KinectExplorer.ico" Title="Kinect Explorer - Console"
-        Top="0" Left="0" mc:Ignorable="d" 
-        d:DesignHeight="500" d:DesignWidth="1280" SizeToContent="WidthAndHeight">
+        Top="0" Left="0" mc:Ignorable="d" SizeToContent="WidthAndHeight" 
+        d:DesignHeight="500" d:DesignWidth="1280" Closed="WindowClosed">
     <Grid Height="500" Name="grid1" Width="1280">
         <Image Height="480" HorizontalAlignment="Left" Name="kinectColorImage" Stretch="Fill" VerticalAlignment="Top" Width="640" />
         <Image Height="480" HorizontalAlignment="Left" Margin="640,0,0,0" Name="kinectDepthImage" Stretch="Fill" VerticalAlignment="Top" Width="640" />
