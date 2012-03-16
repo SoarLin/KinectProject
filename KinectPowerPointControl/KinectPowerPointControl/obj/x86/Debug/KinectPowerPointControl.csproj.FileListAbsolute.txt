@@ -1,0 +1,14 @@
+D:\KinectProject\KinectPowerPointControl\KinectPowerPointControl\bin\Debug\KinectPowerPointControl.exe
+D:\KinectProject\KinectPowerPointControl\KinectPowerPointControl\bin\Debug\KinectPowerPointControl.pdb
+D:\KinectProject\KinectPowerPointControl\KinectPowerPointControl\obj\x86\Debug\KinectPowerPointControl.csprojResolveAssemblyReference.cache
+D:\KinectProject\KinectPowerPointControl\KinectPowerPointControl\obj\x86\Debug\MainWindow.g.cs
+D:\KinectProject\KinectPowerPointControl\KinectPowerPointControl\obj\x86\Debug\App.g.cs
+D:\KinectProject\KinectPowerPointControl\KinectPowerPointControl\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+D:\KinectProject\KinectPowerPointControl\KinectPowerPointControl\obj\x86\Debug\KinectPowerPointControl_MarkupCompile.cache
+D:\KinectProject\KinectPowerPointControl\KinectPowerPointControl\obj\x86\Debug\KinectPowerPointControl_MarkupCompile.lref
+D:\KinectProject\KinectPowerPointControl\KinectPowerPointControl\obj\x86\Debug\MainWindow.baml
+D:\KinectProject\KinectPowerPointControl\KinectPowerPointControl\obj\x86\Debug\KinectPowerPointControl.g.resources
+D:\KinectProject\KinectPowerPointControl\KinectPowerPointControl\obj\x86\Debug\KinectPowerPointControl.Properties.Resources.resources
+D:\KinectProject\KinectPowerPointControl\KinectPowerPointControl\obj\x86\Debug\KinectPowerPointControl.csproj.GenerateResource.Cache
+D:\KinectProject\KinectPowerPointControl\KinectPowerPointControl\obj\x86\Debug\KinectPowerPointControl.exe
+D:\KinectProject\KinectPowerPointControl\KinectPowerPointControl\obj\x86\Debug\KinectPowerPointControl.pdb

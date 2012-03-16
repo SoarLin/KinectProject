@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+//using System.Windows.Forms;
 using Microsoft.Kinect;
 using Microsoft.Speech.Recognition;
 using System.Threading;
@@ -18,9 +19,16 @@ using System.IO;
 using Microsoft.Speech.AudioFormat;
 using System.Diagnostics;
 using System.Windows.Threading;
+using System.Runtime.InteropServices;
 
 namespace KinectPowerPointControl
 {
+    public enum ImageType
+    {
+        Color,
+        Depth,
+    }
+
     public partial class MainWindow : Window
     {
         KinectSensor sensor;
@@ -30,6 +38,9 @@ namespace KinectPowerPointControl
 
         byte[] colorBytes;
         Skeleton[] skeletons;
+
+        private KinectSkeleton skeletonCanvas;// = new KinectSkeleton();
+        private Dictionary<JointType, JointMapping> jointMapping = new Dictionary<JointType, JointMapping>();
         
         bool isCirclesVisible = true;
 
@@ -38,16 +49,101 @@ namespace KinectPowerPointControl
         SolidColorBrush activeBrush = new SolidColorBrush(Colors.Green);
         SolidColorBrush inactiveBrush = new SolidColorBrush(Colors.Red);
 
+        [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
+        static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+        [DllImport("user32.dll", EntryPoint = "FindWindowEx", SetLastError = true)]
+        static extern IntPtr FindWindowEx(IntPtr Parent, IntPtr ChildAfter, string lpClassName, string lpWindowName);
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern IntPtr GetWindow(IntPtr hWnd, uint uCmd);
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern bool SetForegroundWindow(IntPtr hWnd);
+        
+        [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true)]
+        static extern IntPtr SendMessage(IntPtr hWnd, Int32 Msg, IntPtr wParam, IntPtr lParam);
+        [DllImport("user32.dll", EntryPoint = "PostMessage", SetLastError = true)]
+        static extern IntPtr PostMessage(IntPtr hWnd, Int32 Msg, IntPtr wParam, IntPtr lParam);
+     
+        const int WM_COMMAND = 0x111;
+        const int GW_HWNDNEXT = 2;
+        const int MIN_ALL = 419;
+        const int MIN_ALL_UNDO = 416;
+        const int WM_KEYDOWN = 0x0100;
+        const int WM_KEYUP = 0x0101;
+        const int WM_CHAR = 0x0102;
+
         public MainWindow()
         {
             InitializeComponent();
-
+            this.ShowJoints = true;
+            this.ShowBones = true;
+            this.ShowCenter = true;
             //Runtime initialization is handled when the window is opened. When the window
             //is closed, the runtime MUST be unitialized.
             this.Loaded += new RoutedEventHandler(MainWindow_Loaded);
             //Handle the content obtained from the video camera, once received.
 
             this.KeyDown += new KeyEventHandler(MainWindow_KeyDown);
+
+            #region Find PowerPoint & Send F5
+            try
+            {
+                IntPtr ppt = FindWindow("PP11FrameClass", null);
+                IntPtr ppt_slide = FindWindowRecursive(ppt, "paneClassDC", null);
+                //IntPtr ppt_screen = FindWindow("screenClass", null);
+                //SetForegroundWindow(ppt_slide);
+                //System.Threading.Thread.Sleep(500);
+//                PostMessage(ppt_slide, WM_KEYDOWN, (IntPtr)0x74, IntPtr.Zero);
+                //System.Threading.Thread.Sleep(1000);
+                //SendMessage(ppt_slide, WM_CHAR, (IntPtr)0x74, IntPtr.Zero);
+                //System.Threading.Thread.Sleep(500);
+                //PostMessage(ppt_slide, WM_KEYUP, (IntPtr)0x74, IntPtr.Zero);
+                //System.Threading.Thread.Sleep(1000);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            #endregion Find PowerPoint & Send F5
+        }
+
+        public bool ShowBones { get; set; }
+        public bool ShowJoints { get; set; }
+        public bool ShowCenter { get; set; }
+        public ImageType ImageType { get; set; }
+       
+        #region Trace KeyDown 
+        /*
+        protected override void OnKeyDown(KeyEventArgs keyEvent)
+        {
+            // Gets the key code 
+            string key = "Key: " + keyEvent.Key.ToString();
+
+            // Gets the key data; recognizes combination of keys 
+            string Type = "Type: " + keyEvent.GetType();
+            MessageBox.Show(key + ", " + Type);
+        }*/
+        #endregion Trace KeyDown
+
+        private IntPtr FindWindowRecursive(IntPtr hParent, string szClass, string szCaption)
+        {
+            IntPtr hResult = FindWindowEx(hParent, IntPtr.Zero, szClass, szCaption);
+            //SendMessage(hParent, WM_KEYDOWN, (IntPtr)0x74, IntPtr.Zero);
+            //SendMessage(hParent, WM_CHAR, (IntPtr)0x74, IntPtr.Zero);
+            //SendMessage(hParent, WM_KEYUP, (IntPtr)0x74, IntPtr.Zero);
+            if (hResult != IntPtr.Zero)
+                return hResult; // found it
+
+            // enumerate all childs and if found one that has childs go in
+            IntPtr hChild = FindWindowEx(hParent, IntPtr.Zero, null, null); // first child
+            while (hChild != IntPtr.Zero)
+            {
+                // let's enumerate
+                hResult = FindWindowRecursive(hChild, szClass, szCaption);
+                if (hResult != IntPtr.Zero)
+                    return hResult;  // found it
+                hChild = GetWindow(hChild, GW_HWNDNEXT);
+            }
+            return IntPtr.Zero; // no childs, so no window was found
         }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -67,7 +163,8 @@ namespace KinectPowerPointControl
 
             sensor.DepthStream.Enable(DepthImageFormat.Resolution320x240Fps30);
             sensor.SkeletonStream.Enable();
-            sensor.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(sensor_SkeletonFrameReady);
+            //sensor.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(sensor_SkeletonFrameReady);
+            sensor.AllFramesReady += new EventHandler<AllFramesReadyEventArgs>(sensor_AllFramesReady);
 
             sensor.ElevationAngle = 0;
 
@@ -92,6 +189,11 @@ namespace KinectPowerPointControl
             }
         }
 
+        void MainWindow_Closed(object sender, EventArgs e)
+        {
+            sensor.Stop();
+        }
+
         void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.C)
@@ -102,6 +204,8 @@ namespace KinectPowerPointControl
 
         void sensor_ColorFrameReady(object sender, ColorImageFrameReadyEventArgs e)
         {
+            if (sensor == null || !sensor.IsRunning || !((KinectSensor)sender).SkeletonStream.IsEnabled)
+                return;
             using (var image = e.OpenColorImageFrame())
             {
                 if (image == null)
@@ -136,9 +240,13 @@ namespace KinectPowerPointControl
             }
         }
 
-
-        void sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
+        //void sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
+        void sensor_AllFramesReady(object sender, AllFramesReadyEventArgs e)
         {
+            if (sensor == null || !sensor.IsRunning || !((KinectSensor)sender).SkeletonStream.IsEnabled)
+                return;
+            Skeleton closestSkeleton;
+            #region Find Skeleton
             using (var skeletonFrame = e.OpenSkeletonFrame())
             {
                 if (skeletonFrame == null)
@@ -152,7 +260,7 @@ namespace KinectPowerPointControl
 
                 skeletonFrame.CopySkeletonDataTo(skeletons);
 
-                Skeleton closestSkeleton = (from s in skeletons
+                closestSkeleton = (from s in skeletons
                                             where s.TrackingState == SkeletonTrackingState.Tracked &&
                                                   s.Joints[JointType.Head].TrackingState == JointTrackingState.Tracked
                                             select s).OrderBy(s => s.Joints[JointType.Head].Position.Z)
@@ -161,6 +269,7 @@ namespace KinectPowerPointControl
                 if (closestSkeleton == null)
                     return;
 
+                #region default paint
                 var head = closestSkeleton.Joints[JointType.Head];
                 var rightHand = closestSkeleton.Joints[JointType.HandRight];
                 var leftHand = closestSkeleton.Joints[JointType.HandLeft];
@@ -178,8 +287,78 @@ namespace KinectPowerPointControl
                 SetEllipsePosition(ellipseRightHand, rightHand, isForwardGestureActive);
 
                 ProcessForwardBackGesture(head, rightHand, leftHand);
+                #endregion default paint
+            }
+            #endregion Find Skeleton
+
+            if (closestSkeleton != null)
+            {
+                using (DepthImageFrame depthImageFrame = e.OpenDepthImageFrame())
+                {
+                    #region depth_image
+                    skeletonCanvas = this.skeletonCanvas1;                   
+                    if (depthImageFrame != null)
+                    {
+                        skeletonCanvas.ShowBones = true;//this.ShowBones;
+                        skeletonCanvas.ShowJoints = true;//this.ShowJoints;
+                        skeletonCanvas.ShowCenter = true;//this.ShowCenter;
+
+                        // Transform the data into the correct space
+                        // For each joint, we determine the exact X/Y coordinates for the target view
+                        foreach (Joint joint in closestSkeleton.Joints)
+                        {
+                            Point mappedPoint = this.GetPosition2DLocation(depthImageFrame, joint.Position);
+                            jointMapping[joint.JointType] = new JointMapping
+                            {
+                                Joint = joint,
+                                MappedPoint = mappedPoint
+                            };
+                            if (joint.TrackingState != 0)
+                            {
+                                //MessageBox.Show("Find someone's Skeleton!");
+                                Console.WriteLine("Find someone's Skeleton!");
+                            }
+                        }
+                        Point centerPoint = this.GetPosition2DLocation(depthImageFrame, closestSkeleton.Position);
+
+                        // Scale the skeleton thickness
+                        // 1.0 is the desired size at 640 width
+                        double scale = this.RenderSize.Width / 640;
+
+                        skeletonCanvas.RefreshSkeleton(closestSkeleton, jointMapping, centerPoint, scale);
+                    }
+
+                    #endregion depth_image
+                }
             }
         }
+
+        private Point GetPosition2DLocation(DepthImageFrame depthFrame, SkeletonPoint skeletonPoint)
+        {
+            DepthImagePoint depthPoint = depthFrame.MapFromSkeletonPoint(skeletonPoint);
+            return new Point(
+                        (int)(this.RenderSize.Width * depthPoint.X / depthFrame.Width),
+                        (int)(this.RenderSize.Height * depthPoint.Y / depthFrame.Height));
+            /*
+            switch (ImageType)
+            {
+                case ImageType.Color:
+                    ColorImagePoint colorPoint = depthFrame.MapToColorImagePoint(depthPoint.X, depthPoint.Y, kinectSensor.ColorStream.Format);
+
+                    // map back to skeleton.Width & skeleton.Height
+                    return new Point(
+                        (int)(this.RenderSize.Width * colorPoint.X / kinectSensor.ColorStream.FrameWidth),
+                        (int)(this.RenderSize.Height * colorPoint.Y / kinectSensor.ColorStream.FrameHeight));
+                case ImageType.Depth:
+                    return new Point(
+                        (int)(this.RenderSize.Width * depthPoint.X / depthFrame.Width),
+                        (int)(this.RenderSize.Height * depthPoint.Y / depthFrame.Height));
+                default:
+                    throw new ArgumentOutOfRangeException("ImageType was a not expected value: " + ImageType.ToString());
+            }
+            */
+        }
+
 
         private void ProcessForwardBackGesture(Joint head, Joint rightHand, Joint leftHand)
         {
@@ -229,8 +408,8 @@ namespace KinectPowerPointControl
                 ellipse.Fill = inactiveBrush;
             }
 
-            Canvas.SetLeft(ellipse, point.X - ellipse.ActualWidth / 2);
-            Canvas.SetTop(ellipse, point.Y - ellipse.ActualHeight / 2);
+            Canvas.SetLeft(ellipse, (point.X - ellipse.ActualWidth / 2)/2);
+            Canvas.SetTop(ellipse, (point.Y - ellipse.ActualHeight / 2)/2);
         }
 
         void ToggleCircles()
