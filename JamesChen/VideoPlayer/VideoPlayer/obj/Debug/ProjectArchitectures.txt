@@ -1,1 +1,1 @@
-C:\Users\James\Documents\Visual Studio 11\Projects\VideoPlayer\VideoPlayer\VideoPlayer.csproj;neutral
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\VideoPlayer.csproj;neutral

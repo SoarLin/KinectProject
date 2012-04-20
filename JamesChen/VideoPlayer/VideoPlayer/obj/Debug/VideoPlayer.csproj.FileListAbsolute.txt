@@ -23,3 +23,28 @@ c:\users\james\documents\visual studio 11\Projects\VideoPlayer\VideoPlayer\obj\D
 c:\users\james\documents\visual studio 11\Projects\VideoPlayer\VideoPlayer\obj\Debug\pri.resfiles
 c:\users\james\documents\visual studio 11\Projects\VideoPlayer\VideoPlayer\obj\Debug\LanguageQualifiers.txt
 c:\users\james\documents\visual studio 11\Projects\VideoPlayer\VideoPlayer\obj\Debug\ProjectArchitectures.txt
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\bin\Debug\Assets\Logo.png
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\bin\Debug\Assets\SmallLogo.png
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\bin\Debug\Assets\SplashScreen.png
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\bin\Debug\Assets\StoreLogo.png
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\bin\Debug\VideoPlayer.exe
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\bin\Debug\VideoPlayer.pdb
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\bin\Debug\resources.pri
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\bin\Debug\AppxManifest.xml
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\bin\Debug\VideoPlayer.build.appxrecipe
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\App.g.i.cs
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\App.g.cs
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\BlankPage.g.i.cs
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\BlankPage.g.cs
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\XamlTypeInfo.g.cs
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\App.xaml
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\BlankPage.xaml
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\Common\StandardStyles.xaml
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\VideoPlayer.exe
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\VideoPlayer.pdb
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\priconfig.xml
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\layout.resfiles
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\resources.resfiles
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\pri.resfiles
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\LanguageQualifiers.txt
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\obj\Debug\ProjectArchitectures.txt
