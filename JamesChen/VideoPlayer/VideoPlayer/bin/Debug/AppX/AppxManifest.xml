@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="ba3a0933-ae86-4828-a7fa-8479a09a6d8d" Publisher="CN=James" Version="1.0.0.0" ProcessorArchitecture="neutral" />
+  <Properties>
+    <DisplayName>VideoPlayer</DisplayName>
+    <PublisherDisplayName>James</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+    <Description>VideoPlayer</Description>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2</OSMinVersion>
+    <OSMaxVersionTested>6.2</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="en-US" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="VideoPlayer.exe" EntryPoint="VideoPlayer.App">
+      <VisualElements DisplayName="VideoPlayer" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="VideoPlayer" ForegroundText="light" BackgroundColor="#222222">
+        <DefaultTile ShowName="allLogos" />
+        <SplashScreen Image="Assets\SplashScreen.png" />
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
