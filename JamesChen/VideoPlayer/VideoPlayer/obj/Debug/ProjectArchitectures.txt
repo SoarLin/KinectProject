@@ -1,0 +1,1 @@
+D:\Git work\KinectProject\JamesChen\VideoPlayer\VideoPlayer\VideoPlayer.csproj;neutral
